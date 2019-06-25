@@ -1,0 +1,17 @@
+
+#!/bin/sh
+
+BUILD_DIR=$1
+
+cd $BUILD_DIR
+
+if [ -f "static.json" ]
+then
+  echo '-----> Override existing `static.json` file'
+fi
+
+echo '{ "root": "storybook-build/", "routes": { "/**": "index.html" } }' > static.json
+
+echo '-----> Start Storybook build'
+yarn build-storybook
+echo '-----> Finish Storybook build'
